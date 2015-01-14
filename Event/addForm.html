@@ -9,36 +9,21 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <p>${message}</p>
-        <table>
-            <thead>
-                <tr>
-                    <th width="">ID</th>
-                    <th width="">Nome</th>
-                    <th width="">Descricao</th>
-                    <th width="">Criador</th>
-                    <th width="">Atividades</th>
-                    <th width="">Operations</th>
-                </tr>
-            </thead>
-            <tbody>
-                <c:forEach var="event" items="${events}">
-                    <tr>
-                        <td>${event.id}</td>
-                        <td>${event.nome}</td>
-                        <td>${event.descricao}</td>
-                        <td>${event.criador}</td>
-                        <td>
-                            ${event.atividades}
-                        </td>
-                        <td>
-                            <a href="${pageContext.request.contextPath}/Event/editForm/${event.id}">Edit</a> | 
-                            <a href="${pageContext.request.contextPath}/Event/delete/${event.id}">Delete</a>
-                        </td>
-                    </tr>
-                </c:forEach>
-                <a href="${pageContext.request.contextPath}">Home Page</a>
-            </tbody>
-        </table>
+        <h1>Adicionar Evento</h1>
+        <div class="message">
+            ${message}
+        </div>
+        <form:form commandName="event" action="${pageContext.request.contextPath}/Event/${action}">
+            <label>Nome:</label> 
+                <form:input path="nome"/> <br/>
+            <label>Descricao:</label> 
+                <form:input path="descricao"/> <br/>
+           <label>Atividades</label>  
+           <form:checkboxes path="atividade" items="${atividades}"/>
+           <br/>
+           <button type="submit"> ${button} </button>
+           <br/>
+           <a href="${pageContext.request.contextPath}">Home Page</a>
+        </form:form>
     </body>
 </html>
